@@ -1,0 +1,8 @@
+import { Router } from "express";
+import { verifyOtp , googleAuth, signupWithOtp } from "../controllers/auth.controller";
+const router = Router();
+
+router.post('/signup' ,signupWithOtp );
+router.post('/verify-otp',verifyOtp );
+router.post("/google",googleAuth );
+export default router;
