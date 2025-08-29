@@ -4,7 +4,8 @@ export const signupWithOtp = async(req : Request, res : Response)=>{
    
      try{
        const { email , name , dob} = req.body;
-      const result = await sendOtp(name , dob,email);
+       
+      const result = await sendOtp(name ,dob,email);
       res.json(result);
      
      }

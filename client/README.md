@@ -1,69 +1,94 @@
-# React + TypeScript + Vite
+# Note Taking App - Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React TypeScript application with OTP-based authentication.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Sign Up Flow**: Complete registration with OTP verification
+- **Sign In Flow**: OTP-based authentication
+- **Responsive Design**: Works on desktop and mobile devices
+- **Modern UI**: Clean, professional design with Tailwind CSS
+- **TypeScript**: Full type safety throughout the application
 
-## Expanding the ESLint configuration
+## Authentication Flow
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Sign Up Process
+1. User fills out registration form (Name, Date of Birth, Email)
+2. Clicks "Get OTP" button
+3. Redirected to OTP verification page
+4. Enters 6-digit OTP code
+5. Account is created upon successful verification
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Sign In Process
+1. User enters email address
+2. Clicks "Resend OTP" to receive verification code
+3. Enters OTP code
+4. Option to "Keep me logged in"
+5. Successfully authenticated
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Pages
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- `/signup` - Registration page
+- `/signin` - Login page  
+- `/verify-otp` - OTP verification page
+
+## Components
+
+- `AuthLayout` - Layout wrapper with background image
+- `Input` - Reusable form input component
+- `Button` - Reusable button component
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router DOM
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── pages/              # Page components
+├── assets/             # Static assets (images, etc.)
+├── App.tsx            # Main app component with routing
+└── main.tsx           # Application entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## API Integration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The application is ready for backend integration. Currently, all API calls are logged to the console. Replace the console.log statements with actual API calls to your backend service.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Key API Endpoints to Implement:
+- `POST /api/auth/send-otp` - Send OTP to email
+- `POST /api/auth/verify-otp` - Verify OTP and create account
+- `POST /api/auth/login` - Sign in with OTP
+- `POST /api/auth/resend-otp` - Resend OTP
+
+## Styling
+
+The application uses Tailwind CSS for styling with a clean, modern design that matches the provided UI mockups. The design includes:
+
+- Rounded corners and shadows for cards
+- Blue color scheme for primary actions
+- Responsive layout that works on all screen sizes
+- Professional typography and spacing

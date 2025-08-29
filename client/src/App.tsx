@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import OtpVerification from './pages/OtpVerification'
+import Dashboard from './pages/Dashboard'
 
 function App() {
-
   return (
-    <>
-  <h1 className='underline color-red-700'>Hello World</h1>
-      <button className='bg-blue-500 text-white p-2 rounded-md'>Click me</button>
-    </>
+    <Routes>
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/verify-otp" element={<OtpVerification />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/" element={<Navigate to="/signup" replace />} />
+      <Route path="*" element={<Navigate to="/signin" replace />} />
+    </Routes>
   )
 }
 
