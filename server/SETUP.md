@@ -10,18 +10,18 @@ PORT=8000
 NODE_ENV=development
 
 # Database
-MONGO_URI=mongodb+srv://ritik:Ritik%406377@cluster0.xwwzy.mongodb.net/notes-app?retryWrites=true&w=majority
+MONGO_URI=
 
 # JWT
-JWT_SECRET=supersecretjwtkey123
+JWT_SECRET=s
 
 # Google OAuth
-GOOGLE_CLIENT_ID=1049811159085-fs4mdksrtsi3ctdvb3cgn8q7qtchn8gh.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=G
 
 # Email (Gmail)
-EMAIL_USER=ritikdangi445566@gmail.com
-EMAIL_PASS=nwqyolqpdkxxxzpu
+EMAIL_USER=m
+EMAIL_PASS=
 
 # Client URL
 CLIENT_URL=http://localhost:5173
