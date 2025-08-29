@@ -9,7 +9,7 @@ Create a `.env` file in the client directory with the following content:
 VITE_API_BASE_URL=http://localhost:8000/api
 
 # Google OAuth
-VITE_GOOGLE_CLIENT_ID=1049811159085-fs4mdksrtsi3ctdvb3cgn8q7qtchn8gh.apps.googleusercontent.com
+VITE_GOOGLE_CLIENT_ID=
 
 # Sample User Data (for development)
 VITE_SAMPLE_USER_NAME=Jonas Khanwald
