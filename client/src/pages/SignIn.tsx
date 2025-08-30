@@ -71,11 +71,7 @@ const SignIn: React.FC = () => {
     setCanResend(false);
 
     try {
-      // For sign in, we need to implement a resend OTP endpoint
-      // For now, we'll use the same signup endpoint
-      await apiService.sendOtp({
-        name: '',
-        dob: '',
+      await apiService.resendOtp({
         email: formData.email
       });
     } catch (err: unknown) {

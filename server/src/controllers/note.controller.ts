@@ -4,6 +4,11 @@ import { Note, INote } from '../models/Note';
 // Create a new note
 export const createNote = async (req: Request, res: Response) => {
   try {
+    console.log('=== CREATE NOTE DEBUG ===');
+    console.log('Request body:', req.body);
+    console.log('Content-Type:', req.headers['content-type']);
+    console.log('========================');
+    
     const { title, content, color, tags } = req.body;
     const userId = (req as any).user.userId; // From auth middleware
 

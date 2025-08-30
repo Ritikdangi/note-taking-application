@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import AuthLayout from '../components/AuthLayout';
 import GoogleAuth from '../components/GoogleAuth';
+import Toast from '../components/Toast';
 import sampleImage from '../assets/images/signup-image.png';
 import logo from '../assets/images/logo.png';
 import { apiService } from '../services/api';
@@ -18,6 +19,15 @@ const SignUp: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [userExists, setUserExists] = useState(false);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: 'success' | 'error' | 'info';
+    isVisible: boolean;
+  }>({
+    message: '',
+    type: 'info',
+    isVisible: false
+  });
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -30,30 +40,43 @@ const SignUp: React.FC = () => {
     setLoading(true);
     setError('');
     setUserExists(false);
-
     try {
-      await apiService.sendOtp({
+      const res = await apiService.sendOtp({
         name: formData.name,
         dob: formData.dateOfBirth,
         email: formData.email
       });
-
-      // Navigate to OTP verification page with user data
-      navigate('/verify-otp', { 
-        state: { 
+    
+      navigate('/verify-otp', {
+        state: {
           userData: formData,
-          isSignUp: true 
-        } 
+          isSignUp: true
+        }
       });
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to send OTP';
-      
-      // Check if user already exists
-      if (errorMessage.includes('already exists') || errorMessage.includes('registered')) {
+    
+    } catch (err : any ) {
+      const errorMessage =
+        err?.response?.data?.message || err.message || 'Failed to send OTP';
+    
+      console.log('Caught error:', errorMessage);
+    
+      if (
+        errorMessage.toLowerCase().includes('already exists') ||
+        errorMessage.toLowerCase().includes('registered')
+      ) {
         setUserExists(true);
+        setToast({
+          message: 'User already registered! Please sign in instead.',
+          type: 'info',
+          isVisible: true
+        });
+        setTimeout(() => {
+          navigate('/signin');
+        }, 2500);
       } else {
         setError(errorMessage);
       }
+    
     } finally {
       setLoading(false);
     }
@@ -146,6 +169,14 @@ const SignUp: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={() => setToast(prev => ({ ...prev, isVisible: false }))}
+      />
     </AuthLayout>
   );
 };

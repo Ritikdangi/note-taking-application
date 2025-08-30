@@ -11,7 +11,7 @@ export const sendOtp = async (name: string, dob: Date, email: string) => {
       user = new User({ email, name, dob });
     } else {
       // if already exists, update name/dob in case they are missing
-      return { message: "User already exists , please sign in" };
+      throw new Error("User already exists , please sign in");
       // user.name = name || user.name;
       // user.dob = dob || user.dob;
     }
@@ -64,4 +64,24 @@ export const sendOtp = async (name: string, dob: Date, email: string) => {
     const appToken = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET!, { expiresIn: "7d" });
   
     return { token: appToken, user };
+  };
+
+
+  export const resendOtps = async ( email: string) => {
+    let user = await User.findOne({ email });
+  
+    if (!user) {
+      throw new Error("User does not exists , please sign up");
+    }  
+    
+  
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    user.otp = otp;
+    user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+    await user.save();
+  
+    //  Send OTP via email
+    await sendEmail(email, "Your OTP Code", `Your OTP is ${otp}. It will expire in  10 minutes.`);
+    console.log("error")
+    return { message: "OTP sent to email" };
   };
