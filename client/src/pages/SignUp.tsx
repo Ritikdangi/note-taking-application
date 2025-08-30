@@ -93,6 +93,7 @@ const SignUp: React.FC = () => {
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             required
+            disabled={userExists}
           />
           
           <Input 
@@ -101,6 +102,7 @@ const SignUp: React.FC = () => {
             value={formData.dateOfBirth}
             onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
             required
+            disabled={userExists}
           />
           
           <Input 
@@ -109,13 +111,14 @@ const SignUp: React.FC = () => {
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             required
+            disabled={userExists}
           />
 
           <Button 
             type="submit" 
             onClick={handleGetOtp}
             className="mt-6"
-            disabled={loading}
+            disabled={loading || userExists}
           >
             {loading ? 'Sending OTP...' : 'Get OTP'}
           </Button>
@@ -133,7 +136,7 @@ const SignUp: React.FC = () => {
 
         {/* Google OAuth */}
         <div className="mb-6">
-          <GoogleAuth />
+          <GoogleAuth disabled={userExists} />
         </div>
 
         <div className="mt-6 text-center">

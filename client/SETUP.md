@@ -9,12 +9,12 @@ Create a `.env` file in the client directory with the following content:
 VITE_API_BASE_URL=http://localhost:8000/api
 
 # Google OAuth
-VITE_GOOGLE_CLIENT_ID=1049811159085-fs4mdksrtsi3ctdvb3cgn8q7qtchn8gh.apps.googleusercontent.com
+VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 
 # Sample User Data (for development)
-VITE_SAMPLE_USER_NAME=Jonas Khanwald
-VITE_SAMPLE_USER_EMAIL=jonas_kahnwald@gmail.com
-VITE_SAMPLE_USER_DOB=1997-12-11
+VITE_SAMPLE_USER_NAME=John Doe
+VITE_SAMPLE_USER_EMAIL=john.doe@example.com
+VITE_SAMPLE_USER_DOB=1990-01-01
 ```
 
 ## Steps to Setup

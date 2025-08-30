@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 // import rateLimit from 'express-rate-limit';
 import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes'
+import noteRoutes from './routes/noteRoutes'
 // Load environment variables
 dotenv.config();
 
@@ -28,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/api/auth', authRoutes);
-
+app.use('/api/notes', noteRoutes);
 
 // handle  invalid routes (no path to avoid Express 5 path-to-regexp issues)
 app.use((req, res) => {
