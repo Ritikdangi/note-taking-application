@@ -11,8 +11,9 @@ export const sendOtp = async (name: string, dob: Date, email: string) => {
       user = new User({ email, name, dob });
     } else {
       // if already exists, update name/dob in case they are missing
-      user.name = name || user.name;
-      user.dob = dob || user.dob;
+      return { message: "User already exists , please sign in" };
+      // user.name = name || user.name;
+      // user.dob = dob || user.dob;
     }
   
     const otp = Math.floor(100000 + Math.random() * 900000).toString();

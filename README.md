@@ -76,18 +76,18 @@ PORT=8000
 NODE_ENV=development
 
 # Database
-MONGO_URI=mongodb+srv://ritik:Ritik%406377@cluster0.xwwzy.mongodb.net/notes-app?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://your-username:your-password@your-cluster.mongodb.net/notes-app?retryWrites=true&w=majority
 
 # JWT
-JWT_SECRET=supersecretjwtkey123
+JWT_SECRET=your-super-secret-jwt-key-here
 
 # Google OAuth
-GOOGLE_CLIENT_ID=1049811159085-fs4mdksrtsi3ctdvb3cgn8q7qtchn8gh.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 
 # Email (Gmail)
-EMAIL_USER=ritikdangi445566@gmail.com
-EMAIL_PASS=nwqyolqpdkxxxzpu
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
 
 # Client URL
 CLIENT_URL=http://localhost:5173
@@ -116,7 +116,12 @@ npm install
 VITE_API_BASE_URL=http://localhost:8000/api
 
 # Google OAuth
-VITE_GOOGLE_CLIENT_ID=1049811159085-fs4mdksrtsi3ctdvb3cgn8q7qtchn8gh.apps.googleusercontent.com
+VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+
+# Sample User Data (for development)
+VITE_SAMPLE_USER_NAME=John Doe
+VITE_SAMPLE_USER_EMAIL=john.doe@example.com
+VITE_SAMPLE_USER_DOB=1990-01-01
 ```
 
 **Start the client:**
@@ -149,6 +154,13 @@ npm run dev
 - `POST /api/auth/signup` - Send OTP for registration
 - `POST /api/auth/verify-otp` - Verify OTP and authenticate
 - `POST /api/auth/google` - Google OAuth authentication
+
+### Notes (Protected Routes)
+- `POST /api/notes/create` - Create a new note
+- `GET /api/notes/get` - Get all notes (with pagination/filters)
+- `GET /api/notes/get/:id` - Get single note by ID
+- `PUT /api/notes/update/:id` - Update a note
+- `DELETE /api/notes/remove/:id` - Delete a note
 
 ## Pages & Routes
 
