@@ -21,6 +21,7 @@ export const authenticateUser = async ( req: AuthReq,res: Response,next: NextFun
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
     req.user = decoded;
+  
     next();
   } catch (error: unknown) {
     if (error instanceof Error) {

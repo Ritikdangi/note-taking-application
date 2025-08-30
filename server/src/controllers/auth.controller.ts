@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { googleAuthService, sendOtp , verifyOtpService } from "../services/auth.service";
+import { googleAuthService, sendOtp , verifyOtpService , resendOtps} from "../services/auth.service";
 export const signupWithOtp = async(req : Request, res : Response)=>{
    
      try{
@@ -27,9 +27,23 @@ export const verifyOtp = async (req: Request, res: Response) => {
   export const googleAuth = async (req: Request, res: Response) => {
     try {
       const { token } = req.body;
+      console.log(token);
       const result = await googleAuthService(token);
       res.json(result);
     } catch (err: any) {
       res.status(400).json({ message: err.message });
     }
   };
+
+  export const resendOtp = async(req : Request, res : Response)=>{
+   
+    try{
+      const { email } = req.body;
+     const result = await resendOtps(email);
+     res.json(result);
+    
+    }
+    catch (err: any) {
+       res.status(400).json({ message: err.message });
+     }
+}
