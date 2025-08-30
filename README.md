@@ -90,7 +90,7 @@ EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
 
 # Client URL
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=
 ```
 
 **Start the server:**
@@ -256,6 +256,3 @@ If you get "The given origin is not allowed for the given client ID" error:
 - Verify environment variables are loaded correctly
 - Test OTP functionality with real email addresses
 
-## License
-
-This project is licensed under the MIT License.
