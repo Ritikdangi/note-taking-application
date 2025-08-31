@@ -7,7 +7,7 @@ import GoogleAuth from '../components/GoogleAuth';
 import sampleImage from '../assets/images/signup-image.png';
 import logo from '../assets/images/logo.png';
 import { apiService } from '../services/api';
-
+import { useNavigate } from 'react-router-dom';
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState({
     email: import.meta.env.VITE_SAMPLE_USER_EMAIL || '',
@@ -18,7 +18,7 @@ const SignIn: React.FC = () => {
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(0);
   const [canResend, setCanResend] = useState(true);
-
+ const navigate= useNavigate();
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (countdown > 0) {
@@ -56,7 +56,7 @@ const SignIn: React.FC = () => {
       localStorage.setItem('user', JSON.stringify(response.user));
 
       // Navigate to dashboard
-      window.location.href = '/dashboard';
+      navigate('/dashboard');
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to sign in';
       setError(errorMessage);
