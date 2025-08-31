@@ -41,7 +41,7 @@ const SignUp: React.FC = () => {
     setError('');
     setUserExists(false);
     try {
-      const res = await apiService.sendOtp({
+      await apiService.sendOtp({
         name: formData.name,
         dob: formData.dateOfBirth,
         email: formData.email
