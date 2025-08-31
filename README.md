@@ -219,13 +219,7 @@ npm run preview      # Preview production build
 npm run lint         # Run ESLint
 ```
 
-## Next Phase
 
-After this authentication-only version is committed to GitHub, the next phase will include:
-- Note creation functionality
-- Note editing and deletion
-- Note storage in database
-- Enhanced dashboard features
 
 ## Troubleshooting
 
