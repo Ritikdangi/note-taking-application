@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/api';
 
+declare global {
+  interface Window {
+    google?: any;
+  }
+}
+
 interface GoogleAuthProps {
   disabled?: boolean;
 }
@@ -23,7 +29,6 @@ const GoogleAuth: React.FC<GoogleAuthProps> = ({ disabled = false }) => {
     google.accounts.id.initialize({
       client_id: clientId,
       callback: async (response: { credential: string }) => {
-        // console.log('Google response:', response);
         try {
           const result = await apiService.googleAuth({ token: response.credential });
           localStorage.setItem('token', result.token);
@@ -45,7 +50,7 @@ const GoogleAuth: React.FC<GoogleAuthProps> = ({ disabled = false }) => {
         logo_alignment: 'left',
       }
     );
-  }, [disabled]);
+  }, [disabled, navigate]);
 
   return (
     <div className={`w-full flex justify-center ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
